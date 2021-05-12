@@ -16,9 +16,8 @@ public class Role implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6353963609310956029L;
+	private static final long serialVersionUID = 1338048803798520616L;
 
-	
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")

@@ -1,4 +1,4 @@
-package com.Spring;
+ package com.Spring;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -7,28 +7,23 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.Spring.serviceImpl.UserDetailsServiceImpl;
-
-
-//Indica que esta clase es de configuracion y necesita ser cargada durante el inicio del server
 @Configuration
-
-//Indica que esta clase sobreescribira la implmentacion de seguridad web
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
+public class WebSecurityConfig  extends  WebSecurityConfigurerAdapter{
 
-    String[] resources = new String[]{
+	String[] resources = new String[]{
             "/include/**","/css/**","/icons/**","/img/**","/js/**","/layer/**"
     };
-    
-    @Override
+	
+	@Override
     protected void configure(HttpSecurity http) throws Exception {
     	http
         .authorizeRequests()
         .antMatchers(resources).permitAll()  
-        .antMatchers("/","/index").permitAll()
+        .antMatchers("/","/index","/signup").permitAll()
             .anyRequest().authenticated()
             .and()
         .formLogin()
@@ -44,8 +39,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
             .permitAll()
             .logoutSuccessUrl("/login?logout");
     }
-    
-    BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -54,11 +49,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     }
     
     @Autowired
-    UserDetailsServiceImpl userDetailsService;
+    UserDetailsService userDetailsService;
     
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception { 
     	//Especificar el encargado del login y encriptacion del password
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
+    
 }
