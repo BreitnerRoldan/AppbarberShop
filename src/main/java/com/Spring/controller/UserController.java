@@ -25,8 +25,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.Spring.Exception.CustomeFieldValidationException;
 import com.Spring.Exception.UsernameOrIdNotFound;
 import com.Spring.dto.ChangePasswordForm;
+import com.Spring.entity.Cita;
 import com.Spring.entity.Role;
 import com.Spring.entity.User;
+import com.Spring.repository.CitaRepository;
 import com.Spring.repository.RoleRepository;
 import com.Spring.service.UserService;
 
@@ -178,5 +180,6 @@ public class UserController {
 		}
 		return ResponseEntity.ok("Success");
 	}
+
 	
 }

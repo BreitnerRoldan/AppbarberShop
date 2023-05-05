@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Solicitar Cita</title>
+  <style>
+    /* Estilos para el diseño */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      /*background-image: url('/static/img/barber9.jpg');*/
+      background-size: cover;
+      background-position: center;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 30px;
+      background-color: transparent;
+      box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    }
+    h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #333;
+    }
+    input[type="text"],
+    input[type="datetime-local"] {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      color: #333;
+    }
+    button[type="submit"] {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button[type="submit"]:hover {
+      background-color: #3e8e41;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Solicitar Cita</h1>
+    <form method="post" th:action="@{/citas/guardar}">
+      <div>
+        <label for="nombreCliente">Nombre del Cliente:</label>
+        <input type="text" id="nombreCliente" name="nombreCliente" required>
+      </div>
+      <div>
+        <label for="fechaHora">Fecha y Hora:</label>
+        <input type="datetime-local" id="fechaHora" name="fechaHora" required>
+      </div>
+      <div>
+        <label for="servicio">Servicio:</label>
+        <input type="text" id="servicio" name="servicio" required>
+      </div>
+      <button type="submit">Guardar Cita</button>
+    </form>
+  </div>
+</body>
+</html>
